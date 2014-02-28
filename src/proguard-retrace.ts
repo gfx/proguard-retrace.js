@@ -16,7 +16,7 @@ var lineMapping = {};
 function decode(mapping : any, line : string) : string {
   return line.replace(/\bat (\S+)\(SourceFile:(\d+)\)/, (matched, symbol, lineNumber, offset) => {
     var originalSymbol = mapping[symbol] || symbol.replace(/(\S+)\.([\w\$]+)$/, (matched, klass, member) => {
-      console.warn([matched, klass, member]);
+      //console.warn([matched, klass, member]);
       return (mapping[klass] || klass) + "." + member;
     });
 
@@ -58,7 +58,7 @@ readLines(mappingFile).forEach((line) => {
   }
 });
 
-console.log(mapping)
+//console.log(mapping)
 
 readLines(stacktraceFile).forEach((line) => {
   console.log( decode(mapping, line) );
