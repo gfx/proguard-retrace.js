@@ -1,8 +1,9 @@
 # USAGE
 
 ```sh
-$ npm install -g typescript
-git submodule update --init
-tsc --out bin/retrace src/proguard-retrace.ts
+npm install -g typescript
+git submodules update --init # or just `git clone --recursive`
+make
 node bin/retrace
 ```
+
