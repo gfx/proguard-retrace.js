@@ -7,7 +7,22 @@ var mappingFile = process.argv[2] || "mapping.txt";
 var stacktraceFile = process.argv[3] || "stacktrace.txt";
 
 function readLines(file: string): string[] {
-    return fs.readFileSync(file).toString().split(/\n/);
+    if (file == '-') {
+        var stdin: any = process.stdin;
+        var fd = stdin.fd;
+
+        var content = "";
+        var BUFFER_SIZE = 4096;
+        var buffer = new Buffer(BUFFER_SIZE);
+        var n;
+
+        while( (n = fs.readSync(fd, buffer, 0, BUFFER_SIZE)) > 0) {
+            content += buffer.slice(0, n).toString();
+        }
+        return content.split(/\n/);
+    } else {
+        return fs.readFileSync(file).toString().split(/\n/);
+    }
 }
 
 var mapping = {}; // (fqName, Data)
