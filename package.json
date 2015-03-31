@@ -14,5 +14,9 @@
     "android"
   ],
   "author": "FUJI Goro",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "dtsm": "^0.9.0",
+    "typescript": "^1.4.1"
+  }
 }
