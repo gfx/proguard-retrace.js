@@ -1,10 +1,10 @@
 // vim: set filetype=typescript:
-///<reference path='../typescript-node-definitions/node.d.ts'/>
+///<reference path='../typings/bundle.d.ts'/>
 
 var fs = require("fs");
 
 var mappingFile = "mapping.txt";
-var stacktraceFile = "stacktrace.txt"
+var stacktraceFile = "stacktrace.txt";
 
 function readLines(file : string) : string[] {
   return fs.readFileSync(file).toString().split(/\n/);
