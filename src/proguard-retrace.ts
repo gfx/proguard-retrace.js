@@ -37,24 +37,27 @@ var originalKlass: string;
 readLines(mappingFile).forEach((line) => {
     if (/^\S/.test(line)) { // class
         var matched = /(\S+) -> (\S+):/.exec(line);
-        originalKlass = matched[1];
-        klass = matched[2];
+        if (matched) {
+            originalKlass = matched[1];
+            klass = matched[2];
 
-        lineMapping[klass] = {};
+            lineMapping[klass] = {};
+        }
     }
     else if (/\S/.test(line)) { // field
         var matched = /(\S+)\s+(\S+) -> (\S+)/.exec(line);
+        if (matched) {
+            var lineAndType = matched[1];
+            var originalName = /[\w\$]+/.exec(matched[2])[0];
+            var name = matched[3];
 
-        var lineAndType = matched[1];
-        var originalName = /[\w\$]+/.exec(matched[2])[0];
-        var name = matched[3];
+            mapping[klass + "." + name] = originalKlass + "." + originalName;
 
-        mapping[klass + "." + name] = originalKlass + "." + originalName;
-
-        lineAndType.replace(/(\d+):(\d+)/, (_, to, from) => {
-            lineMapping[klass][to] = from;
-            return "dummy";
-        });
+            lineAndType.replace(/(\d+):(\d+)/, (_, to, from) => {
+                lineMapping[klass][to] = from;
+                return "dummy";
+            });
+        }
     }
 });
 
