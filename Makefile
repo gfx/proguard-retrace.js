@@ -12,3 +12,8 @@ typings: dtsm.json node_modules
 
 bin/retrace: src/proguard-retrace.ts node_modules typings
 	$(TSC) --out $@ $<
+
+
+test: bin/retrace
+	node bin/retrace test/mapping.txt test/stacktrace.txt
+

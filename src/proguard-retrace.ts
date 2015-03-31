@@ -3,8 +3,9 @@
 
 var fs = require("fs");
 
-var mappingFile = "mapping.txt";
-var stacktraceFile = "stacktrace.txt";
+var mappingFile = process.argv[2] || "mapping.txt";
+var stacktraceFile = process.argv[3] || "stacktrace.txt";
+console.log([mappingFile, stacktraceFile]);
 
 function readLines(file : string) : string[] {
   return fs.readFileSync(file).toString().split(/\n/);
