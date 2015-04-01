@@ -13,6 +13,9 @@
   "keywords": [
     "android"
   ],
+  "bin": {
+    "retrace": "bin/retrace"
+  },
   "author": "FUJI Goro",
   "license": "ISC",
   "devDependencies": {
